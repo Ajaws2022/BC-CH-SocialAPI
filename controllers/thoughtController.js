@@ -1,6 +1,6 @@
 // Required /api/thoughts- Get all thoughts, Get thought by _id, Post new thought and add _id to user, Put update thought by _id, Delete thought by _id, Delete thought by _id
 // Required /api/thoughts/:thoughtId/reactions- Post reaction to thought, Delete reaction from thought by id
-const { Thought, User: Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 module.exports = {
     getThoughts(req, res){

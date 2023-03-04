@@ -1,25 +1,6 @@
-const { Schema, Types } = require('mongoose');
-const reactionSchema = new Schema(
-    {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: new Schema.Types.ObjectId
-        },
-        reactionBody: {
-            type: String,
-            required: true,
-            max: 280
-        },
-        username: {
-            _id: { type: [Schema.Types.ObjectId], ref: 'user'},
-            username: {type: String, ref:'user'}
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now
-        }
-    }
-);
+const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
+
 const thoughtSchema = new Schema(
     {
         thoughtText: {
@@ -33,15 +14,15 @@ const thoughtSchema = new Schema(
             default: Date.now
         },
         username: {
-            _id: { type: [Schema.Types.ObjectId], ref: 'user'},
-            username: {type: String, ref:'user'}
+            type: Schema.Types.ObjectId, 
+            ref: 'user'
         },
-        reactions: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: reactionSchema
-            }
-        ]
+        reactions: [reactionSchema]
+    },
+    {
+        toJSON: {
+          getters: true,
+        },
     }
 );
 

@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 const validateEmail = (email) => {
     const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return regex.test(email)
@@ -32,6 +32,7 @@ const userSchema = new Schema(
     {
         toJSON: {
             virtuals: true,
+            getters: true
         }
     }
 );
