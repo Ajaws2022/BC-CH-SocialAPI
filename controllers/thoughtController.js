@@ -4,8 +4,10 @@ const { Thought, User } = require('../models');
 
 module.exports = {
     getThoughts(req, res){
-        Thought.find().then((thoughts) => res.json(thoughts)).catch(
-            (err) => res.status(500).json(err)
+        Thought.find().then((thoughts) => res.json(thoughts)).catch((err) => {
+                console.error(err)
+                res.status(500).json(err)
+            }
         )
     },
     getSingleThought(req, res){
@@ -60,8 +62,9 @@ module.exports = {
     deleteReaction(req, res){
         Thought.findOneAndUpdate(
             {_id: req.params.thoughtId},
-            {$pull: {reaction: {reactionId: req.params.reactionId}}},
-            { runValidators: true, new: true }
+            {$pull: {reactions: {_id: req.params.reactionId}}},
+            { runValidators: true, new: true },
+            console.log(req.params.reactionId)
         ).then((thought)=>
           !thought
             ? res.status(404).json({message: 'No thought with that ID'})
