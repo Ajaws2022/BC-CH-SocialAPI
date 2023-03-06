@@ -1,0 +1,10 @@
+# Mock Social Network Using Mongo/Mongoose and Express
+
+For this bootcamp challenge we were tasked with creating a mock social network using the models of Users, Friends, Thoughts, and Reactions. It was a unique task as it was my first experience building an API without SQL.
+
+## Installation
+To install use your preferred method provided by GitHub. Node is required. Once inside of the repo open it locally in a terminal or bash then run npm install to install the necessary packages.
+
+## Usage
+
+To use the application first run node utils/seed to populate a basic set of data either node server.js or your preffered runtime environment on the same file. Open it locally in a REST client. From there the routes can be accesed using localhost:3001/api/ and "/users" or "/thoughts" following the api call. Each has a similar but unique set of queries that can be viewed in the "routes/api/thoughtRoutes.js or /userRoutes.js".

@@ -21,17 +21,23 @@ module.exports = {
         );
     },
     createThought(req, res){
-        Thought.create(req.body).then(
-            (thought)=> res.json(thought)
+        Thought.create(req.body).then((thought)=>
+            !thought
+             ? res.status(404).json({message: "no thought with that id"}) 
+             : User.findOneAndUpdate(
+                {username: {$in: req.body.username}},
+                {$push: {thoughts: thought.id}},
+                { runValidators: true, new: true }
+             )
         ).catch(
-            (err) => res.status(500).json(err)
+            (err) => console.error(err)
         );
     },
     deleteThought(req, res){
         Thought.findOneAndDelete({_id: req.params.thoughtId}).then(
             (user) =>
              !user
-              ? res.status(404).json({message: 'No thought with that ID'})
+              ? res.status(404).json({message: 'No user with that ID'})
               : res.json({message: 'Thought deleted.'})
         ).catch(
             (err) => res.status(500).json(err)
