@@ -4,7 +4,7 @@ const { Thought, User } = require('../models');
 
 module.exports = {
     getThoughts(req, res){
-        Thought.find().then((thoughts) => res.json(thoughts)).catch((err) => {
+        Thought.find().populate('reactions').then((thoughts) => res.json(thoughts)).catch((err) => {
                 console.error(err)
                 res.status(500).json(err)
             }
@@ -25,11 +25,12 @@ module.exports = {
             !thought
              ? res.status(404).json({message: "no thought with that id"}) 
              : User.findOneAndUpdate(
-                {username: {$in: req.body.username}},
+                {username: req.body.username},
                 {$push: {thoughts: thought.id}},
-                { runValidators: true, new: true }
-             )
-        ).catch(
+                { new: true }
+             ).then(res.json({message: "Thought Created"}))
+             
+         ).catch(
             (err) => console.error(err)
         );
     },

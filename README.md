@@ -1,6 +1,6 @@
 # Mock Social Network Using Mongo/Mongoose and Express
 
-For this bootcamp challenge we were tasked with creating a mock social network using the models of Users, Friends, Thoughts, and Reactions. It was a unique task as it was my first experience building an API without SQL.
+For this bootcamp challenge we were tasked with creating a mock social network using the models of Users, Friends, Thoughts, and Reactions. It was a unique task as it was my first experience building an API without SQL. A demo video can be found by clicking [here](https://drive.google.com/file/d/1HdKRUpGVf4KdTWP47axtEl5CneOlCiGH/view).
 
 ## Installation
 To install use your preferred method provided by GitHub. Node is required. Once inside of the repo open it locally in a terminal or bash then run npm install to install the necessary packages.

@@ -13,10 +13,6 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now
         },
-        user_id:{
-            type: Schema.Types.ObjectId,
-            ref: 'user'
-        },
         username: {
             type: String, 
             ref: 'user'
